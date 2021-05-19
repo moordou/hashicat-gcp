@@ -38,8 +38,6 @@ resource "tls_private_key" "ssh-key" {
 resource "google_compute_instance" "hashicat" {
   name         = "${var.prefix}-hashicat"
   zone         = "${var.region}-b"
-  department   = "devops"
-  billable     = "true"
   machine_type = var.machine_type
 
   boot_disk {
@@ -61,7 +59,9 @@ resource "google_compute_instance" "hashicat" {
   tags = ["http-server"]
 
   labels = {
-    name = "hashicat"
+    name         = "hashicat"
+    department   = "devops"
+    billable     = "true"
   }
 
 }
